@@ -1,49 +1,46 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
 export default function App() {
-  const [input, setInput] = useState("")
-  const [output, setOutput] = useState("")
+  const [input, setInput] = useState("");
+  const [output, setOutput] = useState("");
 
   useEffect(() => {
     if (!input) {
-      setOutput("")
-      return
+      setOutput("");
+      return;
     }
 
     try {
-      const data = JSON.parse(input)
+      const data = JSON.parse(input);
 
       if (!Array.isArray(data)) {
-        setOutput("JSON must be an array")
-        return
+        setOutput("JSON must be an array");
+        return;
       }
 
-      const keys = Object.keys(data[0])
+      const keys = Object.keys(data[0]);
 
-      const header = `| ${keys.join(" | ")} |`
-      const divider = `| ${keys.map(() => "---").join(" | ")} |`
+      const header = `| ${keys.join(" | ")} |`;
+      const divider = `| ${keys.map(() => "---").join(" | ")} |`;
 
-      const rows = data.map((row: any) =>
-        `| ${keys.map(k => row[k]).join(" | ")} |`
-      )
+      const rows = data.map(
+        (row: any) => `| ${keys.map((k) => row[k]).join(" | ")} |`,
+      );
 
-      setOutput([header, divider, ...rows].join("\n"))
+      setOutput([header, divider, ...rows].join("\n"));
     } catch {
-      setOutput("Invalid JSON")
+      setOutput("Invalid JSON");
     }
-  }, [input])
+  }, [input]);
 
   const copy = () => {
-    navigator.clipboard.writeText(output)
-  }
+    navigator.clipboard.writeText(output);
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 p-10">
       <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-xl p-6">
-
-        <h1 className="text-2xl font-bold mb-4">
-          JSON → Markdown Table
-        </h1>
+        <h1 className="text-2xl font-bold mb-4">JSON → Markdown Table</h1>
 
         <textarea
           className="w-full border rounded p-2 mb-4 font-mono"
@@ -66,8 +63,7 @@ export default function App() {
         >
           Copy
         </button>
-
       </div>
     </div>
-  )
+  );
 }
