@@ -12,6 +12,7 @@ export default function App() {
 
     try {
       const data = JSON.parse(input)
+
       if (!Array.isArray(data)) {
         setOutput("JSON must be an array")
         return
@@ -30,8 +31,11 @@ export default function App() {
     } catch {
       setOutput("Invalid JSON")
     }
-
   }, [input])
+
+  const copy = () => {
+    navigator.clipboard.writeText(output)
+  }
 
   return (
     <div className="min-h-screen bg-gray-100 p-10">
@@ -50,11 +54,18 @@ export default function App() {
         />
 
         <textarea
-          className="w-full border rounded p-2 mt-4 font-mono"
+          className="w-full border rounded p-2 mt-2 font-mono"
           rows={8}
           value={output}
           readOnly
         />
+
+        <button
+          onClick={copy}
+          className="mt-3 bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-900"
+        >
+          Copy
+        </button>
 
       </div>
     </div>
