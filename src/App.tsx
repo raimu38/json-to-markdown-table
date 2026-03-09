@@ -40,7 +40,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-gray-100 p-10">
       <div className="max-w-2xl mx-auto bg-white shadow-lg rounded-xl p-6">
-        <h1 className="text-2xl font-bold mb-4">JSON → Markdown Table</h1>
+        <h1 className="text-2xl font-bold mb-4">JSON to Markdown Table</h1>
 
         <textarea
           className="w-full border rounded p-2 mb-4 font-mono"
